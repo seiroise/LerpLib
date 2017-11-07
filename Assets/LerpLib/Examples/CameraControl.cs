@@ -13,7 +13,7 @@ namespace LerpLib.Examples {
 		[SerializeField]
 		private Camera _camera;
 		[SerializeField]
-		private LerpTransform _lerpTrans;
+		private LerpedTransform _lerpTrans;
 		[SerializeField]
 		private LerpOrthoSize _lerpOrtho;
 
@@ -55,9 +55,9 @@ namespace LerpLib.Examples {
 		public void InitAngle() {
 			if(_lerpTrans) {
 				_xAngleIndex = _initXAngleIndex;
-				_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.X, _xAngles[_xAngleIndex]);
+				_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.X, _xAngles[_xAngleIndex]);
 				_yAngleIndex = _initYAngleIndex;
-				_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.Y, _yAngles[_yAngleIndex]);
+				_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.Y, _yAngles[_yAngleIndex]);
 			}
 		}
 
@@ -66,7 +66,7 @@ namespace LerpLib.Examples {
 		/// </summary>
 		public void RotateUpX() {
 			_xAngleIndex = Mathf.Clamp(++_xAngleIndex, 0, _xAngles.Length - 1);
-			_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.X, _xAngles[_xAngleIndex]);
+			_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.X, _xAngles[_xAngleIndex]);
 		}
 
 		/// <summary>
@@ -74,7 +74,7 @@ namespace LerpLib.Examples {
 		/// </summary>
 		public void RotateDownX() {
 			_xAngleIndex = Mathf.Clamp(--_xAngleIndex, 0, _xAngles.Length);
-			_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.X, _xAngles[_xAngleIndex]);
+			_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.X, _xAngles[_xAngleIndex]);
 		}
 
 		/// <summary>
@@ -82,7 +82,7 @@ namespace LerpLib.Examples {
 		/// </summary>
 		public void RotateLeftY() {
 			_yAngleIndex = (_yAngleIndex + 1) % _yAngles.Length;
-			_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.Y, _yAngles[_yAngleIndex]);
+			_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.Y, _yAngles[_yAngleIndex]);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace LerpLib.Examples {
 		/// </summary>
 		public void RotateRightY() {
 			_yAngleIndex = (_yAngleIndex + (_yAngles.Length - 1)) % _yAngles.Length;
-			_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.Y, _yAngles[_yAngleIndex]);
+			_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.Y, _yAngles[_yAngleIndex]);
 		}
 
 		/// <summary>
@@ -99,7 +99,7 @@ namespace LerpLib.Examples {
 		/// <param name="angle">追加回転量</param>
 		public void RotateY(float angle) {
 			if(_lerpTrans) {
-				_lerpTrans.Lerp(LerpTransform.Elements.EulerAngles, LerpVector3.Dimensions.Y, angle);
+				_lerpTrans.Lerp(LerpedTransform.Elements.EulerAngles, LerpedVector3.Dimensions.Y, angle);
 			}
 		}
 	}
