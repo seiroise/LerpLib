@@ -26,16 +26,16 @@ namespace LerpLib.Examples {
 			/// カメラへの拡縮レベルの設定
 			/// </summary>
 			/// <param name="cam">設定するカメラ</param>
-			public void SetZoomLevel(Camera cam, LerpCell lerpCell) {
-				if(cam) {
+			public void SetZoomLevel(Camera cam, LerpedFloat lerpCell) {
+				if (cam) {
 					cam.transform.localPosition = _position;
-					lerpCell.Lerp(_size);
+					lerpCell.value = _size;
 				}
 			}
 		}
 
 		private Camera _cam;
-		private LerpCell _lerpSize;
+		private LerpedFloat _lerpSize;
 		private ZoomLevel[] _levels = {
 			new ZoomLevel(5f, Vector3.forward * -10f),
 			new ZoomLevel(10f, Vector3.forward * -20f),
@@ -44,16 +44,16 @@ namespace LerpLib.Examples {
 		};
 		private int _levelIndex;
 		private int _initLevelIndex = 0;
-		
+
 		public void Awake() {
 			_cam = GetComponent<Camera>();
-			_lerpSize = new LerpCell(_cam.orthographicSize, _cam.orthographicSize, 10f);
+			_lerpSize = new LerpedFloat(_cam.orthographicSize, _cam.orthographicSize, 10f);
 			InitZoom();
 		}
 
 		public void Update() {
-			if(_lerpSize.Update(Time.deltaTime)) {
-				_cam.orthographicSize = _lerpSize.from;
+			if (_lerpSize.Update(Time.deltaTime)) {
+				_cam.orthographicSize = _lerpSize.value;
 			}
 		}
 
